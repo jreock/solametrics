@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<definitions targetNamespace="http://Metrics.x4ml.soa.com/CA/KAFKA001" xmlns:tns="http://Metrics.x4ml.soa.com/CA/KAFKA001" xmlns:SMDD001="http://SolaMetrics.Metrics.x4ml.soa.com/CA/KAFKA001/SM#D001" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<types>
+<schema targetNamespace="http://SolaMetrics.Metrics.x4ml.soa.com/CA/KAFKA001/SM#D001" xmlns:SMDD001="http://SolaMetrics.Metrics.x4ml.soa.com/CA/KAFKA001/SM#D001" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<element name="SolaMetrics">
+<complexType mixed="false">
+<sequence>
+<element name="MetricsData" minOccurs="0" maxOccurs="214">
+<complexType mixed="false">
+<sequence>
+<element name="TOR-TASK-NO" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="decimal">
+ <totalDigits value="7" /> 
+ <fractionDigits value="0" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="TOR-SYS-ID" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="string">
+ <minLength value="0" /> 
+ <maxLength value="4" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="TOR-TRAN-ID" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="string">
+ <minLength value="0" /> 
+ <maxLength value="4" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="AOR-SYS-ID" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="string">
+ <minLength value="0" /> 
+ <maxLength value="4" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="AOR-TASK-NO" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="decimal">
+ <totalDigits value="7" /> 
+ <fractionDigits value="0" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="METHOD-NM" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="string">
+ <minLength value="0" /> 
+ <maxLength value="35" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="PROG-NM" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="string">
+ <minLength value="0" /> 
+ <maxLength value="8" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="PROG-TY-CD" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="string">
+ <minLength value="0" /> 
+ <maxLength value="35" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="CLIENT-IP-ADDR" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="string">
+ <minLength value="0" /> 
+ <maxLength value="15" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="START-DT" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="string">
+ <minLength value="0" /> 
+ <maxLength value="10" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="START-TM" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="string">
+ <minLength value="0" /> 
+ <maxLength value="8" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="ELPS-TM-AOR" minOccurs="0" maxOccurs="1">
+<simpleType>
+ <restriction base="int" /> 
+ </simpleType>
+ </element>
+<element name="ELPS-TM-TSK" minOccurs="0" maxOccurs="1">
+<simpleType>
+ <restriction base="int" /> 
+ </simpleType>
+ </element>
+<element name="COMP-CD" minOccurs="0" maxOccurs="1">
+<simpleType>
+ <restriction base="short" /> 
+ </simpleType>
+ </element>
+<element name="ABEND-CD" minOccurs="0" maxOccurs="1">
+<simpleType>
+<restriction base="string">
+ <minLength value="0" /> 
+ <maxLength value="4" /> 
+ </restriction>
+ </simpleType>
+ </element>
+<element name="REQ-SZ" minOccurs="0" maxOccurs="1">
+<simpleType>
+ <restriction base="int" /> 
+ </simpleType>
+ </element>
+<element name="RESP-SZ" minOccurs="0" maxOccurs="1">
+<simpleType>
+ <restriction base="int" /> 
+ </simpleType>
+ </element>
+ </sequence>
+ </complexType>
+ </element>
+ </sequence>
+ </complexType>
+ </element>
+ <element name="SolaMetricsResponse" /> 
+ </schema>
+ </types>
+<message name="SolaMetricsMessageNameIn">
+ <part name="body" element="SMDD001:SolaMetrics" /> 
+ </message>
+<message name="SolaMetricsMessageNameOut">
+ <part name="body" element="SMDD001:SolaMetricsResponse" /> 
+ </message>
+<portType name="MetricsPortTypeName">
+<operation name="SolaMetrics">
+ <input message="tns:SolaMetricsMessageNameIn" /> 
+ <output message="tns:SolaMetricsMessageNameOut" /> 
+ </operation>
+ </portType>
+<binding name="MetricsBindingName" type="tns:MetricsPortTypeName">
+ <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" /> 
+<operation name="SolaMetrics">
+ <soap:operation style="document" soapAction="/CA/KAFKA001/SM#D001/CCP:UTF-8/HCP:037" /> 
+<input>
+ <soap:body use="literal" /> 
+ </input>
+<output>
+ <soap:body use="literal" /> 
+ </output>
+ </operation>
+ </binding>
+<service name="Metrics">
+<port name="MetricsServicePortName" binding="tns:MetricsBindingName">
+ <soap:address location="http://localhost:8080/CICS/XML/XMLPC000" /> 
+ </port>
+ </service>
+ </definitions>

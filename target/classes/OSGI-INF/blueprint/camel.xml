@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+           xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://camel.apache.org/schema/blueprint/cxf http://camel.apache.org/schema/cxf/camel-cxf-blueprint.xsd
+             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+  <cxf:cxfEndpoint id="solaMetrics"
+                   address="/SolaMetrics/"
+                   serviceClass="com.soa.x4ml.metrics.ca.kafka001.Metrics"/>
+
+  <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+
+    <route id="SolaMetricsCXF">
+      <!-- route starts from the cxf webservice -->
+      <from uri="cxf:bean:solaMetrics" />
+      <to uri="seda:incomingMetrics" />
+      <!-- and then create the OK reply for the webservice which is still waiting for a reply -->
+      <transform>
+        <constant>OK</constant>
+      </transform>
+    </route>
+
+    <!-- test route -->
+    <route id="SolaMetricsTest">
+      <from uri="seda:incomingMetrics" />
+      <to uri="mock:end"/>
+    </route>
+  </camelContext>
+
+</blueprint>
