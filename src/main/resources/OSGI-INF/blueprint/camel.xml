@@ -10,8 +10,8 @@
 
   <cxf:cxfEndpoint id="solaMetrics"
                    address="/kafka001/"
-                   serviceClass="com.soa.x4ml.metrics.ca.kafka001.sm_d001/SolaMetrics"/>
-
+                   serviceClass="com.soa.x4ml.metrics.solametrics.ca.kafka001.sm_d001.SolaMetrics"/>
+                   
   <camelContext xmlns="http://camel.apache.org/schema/blueprint">
 
     <route id="SolaMetricsCXF">
