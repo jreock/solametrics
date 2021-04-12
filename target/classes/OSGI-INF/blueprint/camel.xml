@@ -10,15 +10,15 @@
 
   <cxf:cxfEndpoint id="solaMetrics"
                    address="/kafka001/"
-                   serviceClass="com.soa.x4ml.metrics.ca.kafka001.Metrics"/>
+                   serviceClass="com.soa.x4ml.metrics.ca.kafka001.sm_d001/SolaMetrics"/>
 
   <camelContext xmlns="http://camel.apache.org/schema/blueprint">
 
     <route id="SolaMetricsCXF">
-      <!-- route starts from the cxf webservice -->
       <from uri="cxf:bean:solaMetrics" />
+      <convertBodyTo type="java.lang.String"/>
+      <to uri="log:SolaLog?level=INFO"/>
       <to uri="seda:incomingMetrics" />
-      <!-- and then create the OK reply for the webservice which is still waiting for a reply -->
       <transform>
         <constant>OK</constant>
       </transform>
@@ -27,7 +27,8 @@
     <!-- test route -->
     <route id="SolaMetricsTest">
       <from uri="seda:incomingMetrics" />
-      <to uri="mock:end"/>
+
+      <to uri="mock:end" />
     </route>
   </camelContext>
 
