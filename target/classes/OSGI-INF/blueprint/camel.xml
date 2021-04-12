@@ -9,7 +9,7 @@
              http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
 
   <cxf:cxfEndpoint id="solaMetrics"
-                   address="/SolaMetrics/"
+                   address="/kafka001/"
                    serviceClass="com.soa.x4ml.metrics.ca.kafka001.Metrics"/>
 
   <camelContext xmlns="http://camel.apache.org/schema/blueprint">
